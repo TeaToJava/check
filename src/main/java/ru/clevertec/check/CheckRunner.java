@@ -23,18 +23,18 @@ public class CheckRunner {
 	private static DiscountCardDao discountCardDao = new DiscountCardDaoImpl();
 	private static ProductDao productDao = new ProductDaoImpl();
 
-	public static void main(String[] args) throws IOException {
-		discountCardDao.setCardsList(ProductReader.getDiscountCardsFromCsvFile());
-		productDao.setProductList(ProductReader.getProductsFromCsvFile());
-		OrderServiceImpl orderService = new OrderServiceImpl(discountCardDao, productDao);
+	public static void main(String[] args){
 		try {
 			Map<String, String> params = ArgsParser.parseArguments(args);
+			discountCardDao.setCardsList(ProductReader.getDiscountCardsFromCsvFile());
+			productDao.setProductList(ProductReader.getProductsFromCsvFile(params.get(ArgsConstant.PATH_TO_FILE)));
+			OrderServiceImpl orderService = new OrderServiceImpl(discountCardDao, productDao);
 			Order order = orderService.createOrder(params);
 			double balance = Double.parseDouble(params.get(ArgsConstant.BALANCE_DEBIT_CARD));
 			Validator.validateBalance(order.getTotalWithDiscount(), balance);
 			String orderToString = OrderToCheckFormatter.checkInfo(order);
 			CheckWriter.writeToConsole(orderToString);
-			CheckWriter.writeToCheck(orderToString);
+			CheckWriter.writeToCheck(ArgsConstant.SAVE_TO_FILE, orderToString);
 		} catch (BadRequestException | NotEnoughMoneyException | InternalServerErrorException e) {
 			CheckWriter.writeErrorToCheck(e.getMessage());
 			CheckWriter.writeToConsole(e.getMessage());

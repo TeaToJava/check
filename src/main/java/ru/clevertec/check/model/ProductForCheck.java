@@ -1,7 +1,5 @@
 package ru.clevertec.check.model;
 
-import java.util.Objects;
-
 public class ProductForCheck {
 	private Product product;
 	private int quantity;
@@ -48,24 +46,5 @@ public class ProductForCheck {
 
 	public void setTotalSum(double totalSum) {
 		this.totalSum = totalSum;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(discount, product, quantity, totalSum);
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ProductForCheck other = (ProductForCheck) obj;
-		return Double.doubleToLongBits(discount) == Double.doubleToLongBits(other.discount)
-				&& Objects.equals(product, other.product) && quantity == other.quantity
-				&& Double.doubleToLongBits(totalSum) == Double.doubleToLongBits(other.totalSum);
 	}
 }

@@ -1,5 +1,6 @@
 package ru.clevertec.check.utils;
 
+import ru.clevertec.check.exceptions.BadRequestException;
 import ru.clevertec.check.exceptions.InternalServerErrorException;
 import ru.clevertec.check.model.DiscountCard;
 import ru.clevertec.check.model.Product;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductReader {
-	private static final String PRODUCT_LIST = "./src/main/resources/products.csv";
 	private static final String DISCOUNT_CARDS_LIST = "./src/main/resources/discountCards.csv";
 	private static final String DELIMITER = ";";
 
@@ -19,9 +19,12 @@ public class ProductReader {
 
 	}
 
-	public static List<Product> getProductsFromCsvFile() throws InternalServerErrorException{
+	public static List<Product> getProductsFromCsvFile(String fileWithProducts) throws InternalServerErrorException {
+		if (fileWithProducts == null) {
+			throw new BadRequestException();
+		}
 		List<Product> products = new ArrayList<>();
-		try (BufferedReader br = new BufferedReader(new FileReader(PRODUCT_LIST))) {
+		try (BufferedReader br = new BufferedReader(new FileReader(fileWithProducts))) {
 			String line;
 			line = br.readLine();
 			while ((line = br.readLine()) != null) {
@@ -35,7 +38,7 @@ public class ProductReader {
 		return products;
 	}
 
-	public static List<DiscountCard> getDiscountCardsFromCsvFile() throws InternalServerErrorException{
+	public static List<DiscountCard> getDiscountCardsFromCsvFile() throws InternalServerErrorException {
 		List<DiscountCard> cards = new ArrayList<>();
 		try (BufferedReader br = new BufferedReader(new FileReader(DISCOUNT_CARDS_LIST))) {
 			String line;

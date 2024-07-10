@@ -1,7 +1,8 @@
 package ru.clevertec.check.exceptions;
 
 public class BadRequestException extends RuntimeException{
-	public BadRequestException() {
+
+    public BadRequestException() {
         super("BAD REQUEST");
     }
 

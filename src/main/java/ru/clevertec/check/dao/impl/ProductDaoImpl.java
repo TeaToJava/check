@@ -7,22 +7,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class ProductDaoImpl implements ProductDao {
-    private List<Product> products = new ArrayList<>();
+	private List<Product> products = new ArrayList<>();
 
-    public Product getProductById(int productId) {
-        return products.stream()
-                .filter(p->p.getId()==productId)
-                .findAny().orElse(null);
-    }
+	public Product getProductById(int productId) {
+		return products.stream().filter(p -> p.getId() == productId).findAny().orElse(null);
+	}
 
-    @Override
-    public List<Product> getProductList() {
-        return products;
-    }
+	@Override
+	public List<Product> getProductList() {
+		return products;
+	}
 
-    @Override
-    public void setProductList(List<Product> products) {
-        this.products = products;
-    }
+	@Override
+	public void setProductList(List<Product> products) {
+		this.products = products;
+	}
 
 }

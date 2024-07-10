@@ -15,7 +15,6 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 public class OrderServiceImpl {
-
 	private static final int WHOLESALE_DISCOUNT = 10;
 	private static final int PRODUCT_QUANTITY_FOR_WHOLESALE_DISCOUNT = 5;
 	private static String regex = "\\d+";
@@ -48,8 +47,7 @@ public class OrderServiceImpl {
 	}
 
 	private Map<String, String> getProductFromParams(Map<String, String> params) {
-		return params.entrySet().stream()
-				.filter(e -> e.getKey().matches(regex))
+		return params.entrySet().stream().filter(e -> e.getKey().matches(regex))
 				.collect(Collectors.toMap(Map.Entry::getKey, Map.Entry::getValue));
 	}
 
