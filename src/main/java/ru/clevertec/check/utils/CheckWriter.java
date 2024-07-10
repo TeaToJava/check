@@ -1,22 +1,22 @@
 package ru.clevertec.check.utils;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import ru.clevertec.check.exceptions.InternalServerErrorException;
 
-public class CheckWriter {
-    private static final String ERROR_FILE = "./error_result.csv";
 
+public class CheckWriter {
+    private static final String ERROR_FILE = "./result.csv";
 	private CheckWriter() {
 
 	}
-
-	public static void writeToCheck(String fileName, String order) throws InternalServerErrorException {
+    public static void writeToCheck(String fileName, String order) throws InternalServerErrorException {
         try (PrintWriter pw = new PrintWriter(fileName);) {
             pw.println(order);
         } catch (FileNotFoundException e) {
-        	throw new InternalServerErrorException();
+            throw new InternalServerErrorException();
         }
     }
 
@@ -29,7 +29,7 @@ public class CheckWriter {
             pw.println("ERROR");
             pw.println(message);
         } catch (FileNotFoundException e) {
-        	throw new InternalServerErrorException();
+        	 throw new InternalServerErrorException();
         }
     }
 }

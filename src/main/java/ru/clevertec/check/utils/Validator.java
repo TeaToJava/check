@@ -7,9 +7,8 @@ import java.util.Map;
 import java.util.Set;
 
 public class Validator {
-
 	private static Set<String> commandLineParameters = Set.of(ArgsConstant.BALANCE_DEBIT_CARD,
-			ArgsConstant.DISCOUNT_CARD, ArgsConstant.PATH_TO_FILE);
+			ArgsConstant.DISCOUNT_CARD, ArgsConstant.SAVE_TO_FILE);
 
 	private Validator() {
 
@@ -29,5 +28,4 @@ public class Validator {
 			throw new NotEnoughMoneyException();
 		}
 	}
-
 }

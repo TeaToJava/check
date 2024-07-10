@@ -5,7 +5,7 @@ import java.util.Objects;
 public class DiscountCard {
 
     private static final int DEFAULT_DISCOUNT = 2;
-    private int id;
+    private long id;
     private int cardNumber;
     private int discountAmount = DEFAULT_DISCOUNT;
 
@@ -16,17 +16,21 @@ public class DiscountCard {
         this.id = id;
         this.cardNumber = cardNumber;
     }
+
+    public DiscountCard(int cardNumber) {
+        this.cardNumber = cardNumber;
+    }
     public DiscountCard(int id, int cardNumber, int discountAmount) {
         this.id = id;
         this.cardNumber = cardNumber;
         this.discountAmount = discountAmount;
     }
 
-    public int getId() {
+    public long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(long id) {
         this.id = id;
     }
 

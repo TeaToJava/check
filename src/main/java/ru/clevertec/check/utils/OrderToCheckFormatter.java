@@ -32,8 +32,9 @@ public class OrderToCheckFormatter {
 		List<ProductForCheck> products = order.getProducts();
 		for (ProductForCheck productForCheck : products) {
 			ru.clevertec.check.model.Product product = productForCheck.getProduct();
-			String productAsString = "%d;%s;%.2f$;%.2f$;%.2f$%n".formatted(product.getId(), product.getDescription(),
-					product.getPrice(), productForCheck.getDiscount(), productForCheck.getTotalSum());
+			String productAsString = "%d;%s;%.2f$;%.2f$;%.2f$%n".formatted(productForCheck.getQuantity(),
+					product.getDescription(), product.getPrice(), productForCheck.getDiscount(),
+					productForCheck.getTotalSum());
 			str.append(productAsString);
 		}
 		str.append("\n");

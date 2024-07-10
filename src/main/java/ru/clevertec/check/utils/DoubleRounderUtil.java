@@ -6,7 +6,6 @@ import java.text.DecimalFormatSymbols;
 import java.util.Locale;
 
 public class DoubleRounderUtil {
-
 	private DoubleRounderUtil() {
 
 	}

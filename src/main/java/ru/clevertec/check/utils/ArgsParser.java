@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class ArgsParser {
+
 	private static String regex = "\\d+";
 
 	private ArgsParser() {
@@ -22,9 +23,12 @@ public class ArgsParser {
 			String key = str[0];
 			String value = str[1];
 			if (!params.containsKey(key)) {
+				if (key.equals(ArgsConstant.DATASOURCE_URL)) {
+					value = value.substring(value.lastIndexOf('/') + 1);
+				}
 				params.put(key, value);
 			} else if (key.matches(regex)) {
-				int valueFromMap = Integer.parseInt(params.get(key));
+				int valueFromMap = Integer.valueOf(params.get(key));
 				int counter = Integer.valueOf(valueFromMap) + Integer.valueOf(value);
 				params.put(key, String.valueOf(counter));
 			}
