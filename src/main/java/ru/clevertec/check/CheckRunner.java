@@ -23,7 +23,7 @@ public class CheckRunner {
 	private static DiscountCardDao discountCardDao = new DiscountCardDaoImpl();
 	private static ProductDao productDao = new ProductDaoImpl();
 
-	public static void main(String[] args) throws IOException {
+	public static void main(String[] args){
 		discountCardDao.setCardsList(ProductReader.getDiscountCardsFromCsvFile());
 		productDao.setProductList(ProductReader.getProductsFromCsvFile());
 		OrderServiceImpl orderService = new OrderServiceImpl(discountCardDao, productDao);
